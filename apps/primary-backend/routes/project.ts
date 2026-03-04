@@ -21,4 +21,18 @@ projectRouter.post('/create',authMiddleware, async (req, res) => {
     }
 })
 
+projectRouter.get('/projects',authMiddleware, async (req, res) => {
+    try {
+        const projects = await prisma.project.findMany({
+            where: {
+                userId: req.userId
+            }
+        })
+        res.json({ message: "Projects fetched successfully", projects });
+    } catch (e) {
+        console.log(e);
+        res.json({ message: "Error fetching projects", error: e });
+    }
+})
+
 export default projectRouter;
