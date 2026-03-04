@@ -24,7 +24,7 @@ userRouter.post('/signup', async (req: Request, res: Response) => {
                 email: req.body.email
             }
         })
-        const token = jwt.sign({ id: user.id }, process.env.JWT_PUBLIC_KEY!, { expiresIn: "1h" });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_PUBLIC_KEY!);
         res.json({ message: "User created successfully", user, token });
     } catch (e) {
         console.log(e);
@@ -46,7 +46,7 @@ userRouter.post('/signin', async (req: Request, res: Response) => {
         if(!existingUser){
             return res.status(400).json({ message: "User not found" });
         }
-        const token = jwt.sign({ id: existingUser.id }, process.env.JWT_PUBLIC_KEY!, { expiresIn: "1h" });
+        const token = jwt.sign({ id: existingUser.id }, process.env.JWT_PUBLIC_KEY!);
         res.json({ message: "User signed in successfully", user: existingUser, token });
     } catch (e) {
         console.log(e);

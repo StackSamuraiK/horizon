@@ -3,7 +3,6 @@ import { type Request, type Response, type NextFunction } from "express";
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const {prompt} = req.body;
         let token: string = req.headers.authorization || "";
         if (!token) {
             return res.status(401).json({ message: "Unauthorized" });
