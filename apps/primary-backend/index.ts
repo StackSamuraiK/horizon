@@ -16,6 +16,7 @@ app.get("/health", (req: Request, res: Response) => {
 app.use('/api/user', userRouter)
 app.use('/api/project', projectRouter)
 
-app.listen(3000, () => {
-    console.log("Server started on port 3000");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });
